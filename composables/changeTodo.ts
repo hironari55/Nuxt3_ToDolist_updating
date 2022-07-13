@@ -1,14 +1,23 @@
-export const addTodo = (toDoList) => ({id, value}) => toDoList.push({id: id, todo:value})
 
-export const deleteTodo = (toDoList) => (targetIndex) =>
-toDoList.splice(targetIndex, 1)
+type Task = {
+  todo: string
+}
+
+export const state = () =>  useState <Task[]>('toDoList', () => [])
 
 export const changeToDo = () => {
-  const todoList = useState <Array<{id:number, todo:string}>>('toDoList', () => [])
+  const toDoList = state()
+
+  const addTodoAction = (value: string) => {
+      toDoList.value.push({todo: value})
+  }
+  const completeTodoAction = (targetIndex) => {
+    toDoList.value.splice(targetIndex, 1)
+  }
 
   return {
-    todoList: readonly(todoList),
-    addTodo: addTodo(todoList),
-    deleteTodo: deleteTodo(todoList),
+    toDoList: toDoList,
+    addTodoAction:addTodoAction,
+    completeTodoAction:completeTodoAction,
   }
 }

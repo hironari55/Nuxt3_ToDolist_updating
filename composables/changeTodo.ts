@@ -1,4 +1,3 @@
-
 type Task = {
   todo: string
 }

@@ -2,24 +2,18 @@
   <v-btn color="error" @click="completed">完了</v-btn>
 </template>
 
-<script lang="ts">
-import { defineComponent, SetupContext } from 'vue'
+<script setup lang="ts">
+type Props = {
+  index: number
+}
 
-export default defineComponent({
-  name: 'CompleteButton',
-  props: {
-    index: {
-      type: Number
-    }
-  },
+const { index } = defineProps<Props>();
 
-  setup(props, context: SetupContext) {
+const completed = (e) =>{
+  completeTodoAction(index);
+};
 
-    const completed = (e) =>{
-      context.emit('complete-todo', props.index);
-    };
-
-    return { completed, props };
-  }
-});
+const {
+  completeTodoAction,
+} = changeToDo()
 </script>

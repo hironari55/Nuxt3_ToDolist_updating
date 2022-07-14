@@ -9,20 +9,22 @@
   </v-layout>
 </template>
 
-<script lang="ts">
-import { defineComponent, SetupContext, ref } from 'vue'
-
-export default defineComponent({
-  name: 'TodoInput',
-  setup(props, context: SetupContext) {
+<script setup lang="ts">
     const todoRef = ref<string>('')
 
+     //追加 storeの中の一番最後のidを取得し、 + 1
+    const lastId = () => {
+        return 1
+    }
+
     const add = (e) =>{
-      context.emit('add-todo', todoRef.value);
+      const id = lastId()
+      const value = todoRef.value
+      addTodoAction(id, value);
       todoRef.value = ''
     };
 
-    return { add, todoRef};
-  }
-});
+const {
+  addTodoAction,
+} = changeToDo()
 </script>

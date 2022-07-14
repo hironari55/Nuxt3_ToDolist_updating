@@ -1,9 +1,9 @@
 <template>
   <div>
-    <Todo-input @add-todo="addTodoAction" />
+    <Todo-input />
     <v-ul class="todoList">
         <v-list v-for="(todo, index) in toDoList" :key="todo.todo">・{{ todo.todo }}
-          <Complete-button :index="index" @complete-todo="completeTodoAction" />
+          <Complete-button :index="index"/>
         </v-list>
     </v-ul>
   </div>
@@ -12,7 +12,5 @@
 <script setup lang="ts">
   const {
     toDoList,
-    addTodoAction,
-    completeTodoAction,
     } = changeToDo()
 </script>
